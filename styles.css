@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: "Courier New", monospace;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Background handling */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("forest.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
+
+/* Lighter gradient overlay */
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(44, 47, 51),
+    /* Reduced from 0.9 */ rgba(35, 39, 42, 0.) 
+  );
+  z-index: -1;
+}
+
+/* Made terminal background slightly more transparent */
+#terminal {
+  background-color: rgba(46, 52, 64, 0.85);
+  width: 90%;
+  max-width: 1000px;
+  height: 600px;
+  padding: 25px;
+  border-radius: 10px;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(236, 239, 244, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+/* Rest of the styles remain the same */
+#output {
+  color: #eceff4;
+  margin-bottom: 15px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+.input-line {
+  display: flex;
+  align-items: center;
+}
+
+.prompt {
+  color: #8fbcbb;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+#input {
+  background: transparent;
+  border: none;
+  color: #8fbcbb;
+  font-family: "Courier New", monospace;
+  font-size: 16px;
+  flex-grow: 1;
+  outline: none;
+}
+
+/* Custom scrollbar */
+#terminal::-webkit-scrollbar {
+  width: 8px;
+}
+
+#terminal::-webkit-scrollbar-track {
+  background: rgba(46, 52, 64, 0.5);
+}
+
+#terminal::-webkit-scrollbar-thumb {
+  background: #8fbcbb;
+  border-radius: 4px;
+}
+
+/* Styling for different message types */
+.item-text {
+  color: #d08770;
+}
+
+.warning-text {
+  color: #bf616a;
+}
+
+.success-text {
+  color: #a3be8c;
+}
+
+.typing {
+  position: relative;
+}
+
+.typing::after {
+  content: "▋";
+  position: absolute;
+  right: -10px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
